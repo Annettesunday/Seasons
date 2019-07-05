@@ -6,14 +6,19 @@ class App extends Component {
     super(props);
 
     this.state = { lat: null };
-  }
-  // react says we have to define render
-  render() {
+
     window.navigator.geolocation.getCurrentPosition(
-      position => console.log(position),
+      position => {
+        //    We called setState - DO NOT MAKE DIRECT ASSIGNMENTS TO STATE WHEN UPDATING
+        this.setState({ lat: position.coords.latitude });
+      },
       err => console.log(err)
     );
-    return <div>Latitude:</div>;
+  }
+
+  // react says we have to define render
+  render() {
+    return <div>Latitude: {this.state.lat}</div>;
   }
 }
 ReactDOM.render(<App />, document.querySelector("#root"));
