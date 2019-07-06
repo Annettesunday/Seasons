@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import SeasonDisplay from "./SeasonDisplay";
+import Spinner from "./Spinner"
 
 class App extends Component {
   // babel will build up the constructor anyways
@@ -23,7 +24,7 @@ class App extends Component {
       return <SeasonDisplay lat={this.state.lat} />;
     }
 
-    return <div>Loading!</div>;
+    return <Spinner />;
   }
 }
 ReactDOM.render(<App />, document.querySelector("#root"));
