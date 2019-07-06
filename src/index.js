@@ -6,15 +6,12 @@ class App extends Component {
     super(props);
 
     this.state = { lat: null, errorMessage: "" };
+  }
 
+  componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
-      position => {
-        //    We called setState - DO NOT MAKE DIRECT ASSIGNMENTS TO STATE WHEN UPDATING
-        this.setState({ lat: position.coords.latitude });
-      },
-      err => {
-        this.setState({ errorMessage: err.message });
-      }
+      position => this.setState({ lat: position.coords.latitude }),
+      err => this.setState({ errorMessage: err.message })
     );
   }
 
